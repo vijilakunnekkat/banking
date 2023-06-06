@@ -5,8 +5,9 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from . models import Final
-from django.views.generic import ListView, CreateView, UpdateView
-from django.urls import reverse_lazy
+# from django.views.generic import ListView, CreateView, UpdateView
+# from django.urls import reverse_lazy
+# from . forms import PersonForm
 
 from django.template.context_processors import request
 
@@ -14,11 +15,13 @@ from django.template.context_processors import request
 # Create your views here.
 # class PersonListView(ListView):
 #     model = Final
+#
 #     context_object_name = 'people'
 #
 # class PersonCreateView(CreateView):
 #     model = Final
-#     fields = ('name', 'date', 'age', 'gender','phone','email','address','district','branch','account','materials')
+#     form_class = PersonForm
+#     fields = ('name', 'dob', 'age', 'gender','phone','email','address','district','branch','account','materials')
 #     success_url = reverse_lazy('person_changelist')
 
 
@@ -71,10 +74,16 @@ def final(request):
 
             final_form = Final(name=name, date=date, age=age,phone=phone,gender=gender,email=email,address=address,district=district,account=account,materials=materials)
             final_form.save()
+            return render(request,"last.html")
         return render(request,"final.html")
 def logout(request):
     auth.logout(request)
     return render(request,"home.html")
+# def load_cities(request):
+#     district_id = request.GET.get('district')
+#     branches = Branch.objects.filter(district_id=district_id).order_by('name')
+#     return render(request, 'hr/branch_dropdown_list_options.html', {'branches': branches})
+#
 
 
 
