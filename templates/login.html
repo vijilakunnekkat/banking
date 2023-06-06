@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<body style="text-align:center;">
+<form action="login" method="post">
+    {% csrf_token %}
+ <div>LOGIN FORM</div><br>
+Username:<input type="text" name="username" placeholder="Enter username:"><br><br>
+Password:<input type="password" name="password" placeholder="Enter your password"><br><br>
+<input type="submit" value="Submit">
+<a href="{% url 'credentials:register' %} ">Register</a>
+</form>
+</body>
+{% endblock %}
